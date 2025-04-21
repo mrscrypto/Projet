@@ -18,6 +18,13 @@ namespace BookListMVC.Controllers
             _db = db;
         }
 
+
+        public class DeleteResponse
+        {
+            public bool success { get; set; }
+            public string message { get; set; }
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -60,16 +67,7 @@ namespace BookListMVC.Controllers
             }
             return View(Book);
         }
-<<<<<<< HEAD
 
-        public class DeleteResponse
-        {
-            public bool success { get; set; }
-            public string message { get; set; }
-        }
-
-=======
->>>>>>> f05804627dfb8fed0773551d4514d0aa2cabb9bf
 
         #region API Calls
         [HttpGet]
