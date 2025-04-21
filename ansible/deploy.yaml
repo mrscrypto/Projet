@@ -2,12 +2,14 @@
 - name: Déploiement de l'application ASP.NET
   hosts: localhost
   connection: local
-  tasks:
+  become: true
 
+  tasks:
     - name: Nettoyer l'ancien déploiement
       file:
         path: /var/www/booklist
         state: absent
+        force: true
 
     - name: Créer le dossier de déploiement
       file:
@@ -16,12 +18,12 @@
 
     - name: Copier les fichiers publiés
       copy:
-        src: /mnt/c/Users/Fatima/Videos/BookListMVC/published
+        src: /mnt/c/Users/Fatima/Videos/BookListMVC/published/
         dest: /var/www/booklist/
         mode: preserve
 
     - name: Lancer l'application (dotnet)
       shell: |
         pkill dotnet || true
-        nohup dotnet /var/www/booklist/BookListMVC.dll &
+        nohup dotnet /var/www/booklist/BookListMVC.dll --urls "http://localhost:5000" &
 
