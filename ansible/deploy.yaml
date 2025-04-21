@@ -1,0 +1,27 @@
+---
+- name: Déploiement de l'application ASP.NET
+  hosts: localhost
+  connection: local
+  tasks:
+
+    - name: Nettoyer l'ancien déploiement
+      file:
+        path: /var/www/booklist
+        state: absent
+
+    - name: Créer le dossier de déploiement
+      file:
+        path: /var/www/booklist
+        state: directory
+
+    - name: Copier les fichiers publiés
+      copy:
+        src: /mnt/c/Users/Fatima/Videos/BookListMVC/published
+        dest: /var/www/booklist/
+        mode: preserve
+
+    - name: Lancer l'application (dotnet)
+      shell: |
+        pkill dotnet || true
+        nohup dotnet /var/www/booklist/BookListMVC.dll &
+
