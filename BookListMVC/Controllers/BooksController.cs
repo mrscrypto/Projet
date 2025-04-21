@@ -60,6 +60,7 @@ namespace BookListMVC.Controllers
             }
             return View(Book);
         }
+<<<<<<< HEAD
 
         public class DeleteResponse
         {
@@ -67,6 +68,8 @@ namespace BookListMVC.Controllers
             public string message { get; set; }
         }
 
+=======
+>>>>>>> f05804627dfb8fed0773551d4514d0aa2cabb9bf
 
         #region API Calls
         [HttpGet]
