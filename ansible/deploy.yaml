@@ -17,7 +17,10 @@
 
     - name: Lancer l'application avec dotnet et variable ASPNETCORE_ENVIRONMENT
       win_shell: |
-        $env:ASPNETCORE_ENVIRONMENT="Development"
-        Start-Process -FilePath "dotnet" -ArgumentList "{{ publish_output }}\\BookListMVC.dll" -WindowStyle Hidden
+         Start-Process "dotnet" `
+         -ArgumentList "{{ publish_output }}\BookListMVC.dll" `
+         -WindowStyle Hidden
+      args:
+        executable: powershell
 
 
