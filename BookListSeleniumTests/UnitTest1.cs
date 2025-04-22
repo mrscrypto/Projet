@@ -25,7 +25,7 @@ namespace BookListSeleniumTests
         [Fact]
         public void Accueil_AfficheTitreCorrect()
         {
-            _driver.Navigate().GoToUrl("https://localhost:44315");
+            _driver.Navigate().GoToUrl("https://localhost:5000");
 
             var titre = _driver.Title;
             Assert.Contains("Home", titre);
@@ -35,14 +35,14 @@ namespace BookListSeleniumTests
         [Fact]
         public void AjouterLivre_FormulaireFonctionne()
         {
-            _driver.Navigate().GoToUrl("https://localhost:44315/Books/Upsert");
+            _driver.Navigate().GoToUrl("https://localhost:5000/Books/Upsert");
 
             System.Threading.Thread.Sleep(5000);
 
 
             _driver.FindElement(By.Id("Name")).SendKeys("Test1");
             _driver.FindElement(By.Id("Author")).SendKeys("Auteur test2");
-            _driver.FindElement(By.Id("ISBN")).SendKeys("1234567890°");
+            _driver.FindElement(By.Id("ISBN")).SendKeys("1234567890Â°");
 
             _driver.FindElement(By.CssSelector("form")).Submit();
             System.Threading.Thread.Sleep(5000);
@@ -57,8 +57,8 @@ namespace BookListSeleniumTests
         [Fact]
         public void ModifierLivre_Fonctionne()
         {
-            // Aller à la page des livres
-            _driver.Navigate().GoToUrl("https://localhost:44315/Books");
+            // Aller Ã  la page des livres
+            _driver.Navigate().GoToUrl("https://localhost:5000/Books");
 
             System.Threading.Thread.Sleep(5000);
 
@@ -81,22 +81,22 @@ namespace BookListSeleniumTests
             // Modifier l'auteur
             var champAuteur = _driver.FindElement(By.Id("Author"));
             champAuteur.Clear(); // efface l'ancien texte
-            champAuteur.SendKeys("Auteur modifié avec succes!!!");
+            champAuteur.SendKeys("Auteur modifiÃ© avec succes!!!");
 
             // Soumettre
             _driver.FindElement(By.CssSelector("form")).Submit();
             System.Threading.Thread.Sleep(5000);
 
-            // Vérifier que le nouvel auteur est présent
+            // VÃ©rifier que le nouvel auteur est prÃ©sent
             var body = _driver.PageSource;
-            Assert.Contains("Auteur modifié avec succes!!!", body);
+            Assert.Contains("Auteur modifiÃ© avec succes!!!", body);
         }
 
         [Fact]
         public void SupprimerLivre_Fonctionne()
         {
-            // Aller à la page des livres
-            _driver.Navigate().GoToUrl("https://localhost:44315/Books");
+            // Aller Ã  la page des livres
+            _driver.Navigate().GoToUrl("https://localhost:5000/Books");
             System.Threading.Thread.Sleep(5000);
 
 
@@ -104,7 +104,7 @@ namespace BookListSeleniumTests
             var lignesLivres = _driver.FindElements(By.CssSelector("table tbody tr"));
             foreach (var ligne in lignesLivres)
             {
-                if (ligne.Text.Contains("Livre à modifier"))
+                if (ligne.Text.Contains("Livre Ã  modifier"))
                 {
                     var boutonDelete = ligne.FindElement(By.CssSelector(".btn-danger"));
                     boutonDelete.Click();
@@ -112,14 +112,14 @@ namespace BookListSeleniumTests
                 }
             }
 
-            // Attendre que la boîte de dialogue SweetAlert apparaisse
+            // Attendre que la boÃ®te de dialogue SweetAlert apparaisse
             System.Threading.Thread.Sleep(5000);
 
             // Cliquer sur le bouton OK dans le pop-up SweetAlert
             var boutonOK = _driver.FindElement(By.CssSelector(".swal-button--confirm.swal-button--danger"));
             boutonOK.Click();
 
-            // Attendre le rafraîchissement
+            // Attendre le rafraÃ®chissement
             System.Threading.Thread.Sleep(5000);
 
            
@@ -129,7 +129,7 @@ namespace BookListSeleniumTests
 
         public void Dispose()
         {
-            // Fermer le navigateur après chaque test
+            // Fermer le navigateur aprÃ¨s chaque test
             _driver.Quit();
         }
 
