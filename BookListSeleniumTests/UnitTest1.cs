@@ -25,7 +25,7 @@ namespace BookListSeleniumTests
         [Fact]
         public void Accueil_AfficheTitreCorrect()
         {
-            _driver.Navigate().GoToUrl("https://localhost:5000");
+            _driver.Navigate().GoToUrl("http://localhost:5000");
 
             var titre = _driver.Title;
             Assert.Contains("Home", titre);
@@ -35,7 +35,7 @@ namespace BookListSeleniumTests
         [Fact]
         public void AjouterLivre_FormulaireFonctionne()
         {
-            _driver.Navigate().GoToUrl("https://localhost:5000/Books/Upsert");
+            _driver.Navigate().GoToUrl("http://localhost:5000/Books/Upsert");
 
             System.Threading.Thread.Sleep(5000);
 
@@ -58,7 +58,7 @@ namespace BookListSeleniumTests
         public void ModifierLivre_Fonctionne()
         {
             // Aller à la page des livres
-            _driver.Navigate().GoToUrl("https://localhost:5000/Books");
+            _driver.Navigate().GoToUrl("http://localhost:5000/Books");
 
             System.Threading.Thread.Sleep(5000);
 
@@ -96,7 +96,7 @@ namespace BookListSeleniumTests
         public void SupprimerLivre_Fonctionne()
         {
             // Aller à la page des livres
-            _driver.Navigate().GoToUrl("https://localhost:5000/Books");
+            _driver.Navigate().GoToUrl("http://localhost:5000/Books");
             System.Threading.Thread.Sleep(5000);
 
 
