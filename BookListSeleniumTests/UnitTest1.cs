@@ -13,7 +13,8 @@ namespace BookListSeleniumTests
         {
             // Configuration Chrome en mode headless
             var options = new ChromeOptions();
-            options.AddArgument("--headless"); 
+            //options.AddArgument("--headless"); 
+            options.AddArgument("--start-maximized");
             options.AddArgument("--no-sandbox");
             options.AddArgument("--disable-dev-shm-usage");
             options.AddArgument("--ignore-certificate-errors"); // AJOUT ESSENTIEL
