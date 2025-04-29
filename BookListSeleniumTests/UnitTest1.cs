@@ -11,12 +11,12 @@ namespace BookListSeleniumTests
 
         public UnitTest1()
         {
-            // Configuration Chrome en mode headless
             var options = new ChromeOptions();
-            options.AddArgument("--headless"); 
+            //options.AddArgument("--headless"); 
+            options.AddArgument("--start-maximized");
             options.AddArgument("--no-sandbox");
             options.AddArgument("--disable-dev-shm-usage");
-            options.AddArgument("--ignore-certificate-errors"); // AJOUT ESSENTIEL
+            options.AddArgument("--ignore-certificate-errors");
 
 
             _driver = new ChromeDriver(options);
@@ -69,7 +69,7 @@ namespace BookListSeleniumTests
                 if (ligne.Text.Contains("Test1"))
                 {
                     // Cliquer sur le bouton Edit
-                    var boutonEdit = ligne.FindElement(By.CssSelector(".btn-success")); // bouton vert "Edit"
+                    var boutonEdit = ligne.FindElement(By.CssSelector(".btn-success"));
                     boutonEdit.Click();
                     break;
                 }
@@ -80,7 +80,7 @@ namespace BookListSeleniumTests
 
             // Modifier l'auteur
             var champAuteur = _driver.FindElement(By.Id("Author"));
-            champAuteur.Clear(); // efface l'ancien texte
+            champAuteur.Clear(); 
             champAuteur.SendKeys("Auteur modifié avec succes!!!");
 
             // Soumettre

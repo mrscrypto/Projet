@@ -53,7 +53,6 @@ namespace BookListTests
         {
             var context = CreateInMemoryDb();
 
-            // Création initiale
             var book = new Book
             {
                 Name = "Design Patterns",
@@ -103,14 +102,11 @@ namespace BookListTests
 
             var controller = new BooksController(context);
 
-            // Act
             var result = await controller.Delete(book.Id) as JsonResult;
 
-            // Convertir en JSON puis en objet typé
             var json = JsonSerializer.Serialize(result.Value);
             var response = JsonSerializer.Deserialize<DeleteResponse>(json);
 
-            // Assert
             Assert.True(response.success);
             Assert.Equal("Delete successful", response.message);
             Assert.Empty(context.Books);
@@ -125,7 +121,7 @@ namespace BookListTests
             var context = CreateInMemoryDb();
             var controller = new BooksController(context)
             {
-                Book = new Book { Name = "" } // invalid
+                Book = new Book { Name = "" } 
             };
 
             controller.ModelState.AddModelError("Name", "Required");
