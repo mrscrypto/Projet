@@ -49,7 +49,7 @@ namespace BookListSeleniumTests
 
             var body = _driver.PageSource;
 
-            Assert.Contains("Test1", body);
+            Assert.Contains("To Kill a Mockingbird", body);
         }
 
 
